@@ -1,0 +1,6 @@
+SKU,Name,Price,Quantity,Total,Margin
+1001,Product A,6.5,120,720.0,10.5
+1002,Product B,1.0,70,100.0,12.0
+1003,Product C,1.0,5,7.0,9.0
+1004,Product D,8.5,10,85.0,4.5
+1005,Product E,3.0,60,210.0,15.0
