@@ -1,7 +1,7 @@
 import pandas as pd
 import streamlit as st
 
-def process_data(uploaded_file):
+def process_data(uploaded_file, file_extension):
     """
     Process the uploaded CSV file.
 
@@ -13,8 +13,13 @@ def process_data(uploaded_file):
     """
     if uploaded_file is not None:
         try:
-            # Assuming the uploaded file is a CSV
-            data = pd.read_csv(uploaded_file)
+            if file_extension == 'csv':
+                data = pd.read_csv(uploaded_file)
+            elif file_extension in ['xls', 'xlsx']:
+                data = pd.read_excel(uploaded_file)
+            else:
+                return None  # Handle other file formats or raise an error
+
             # Perform some basic validation
             if 'SKU' not in data.columns:
                 st.error("The uploaded file must have an 'SKU' column.")

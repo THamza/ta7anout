@@ -29,17 +29,21 @@ def main():
     data = None
 
     # Initialize data and upload file section
-    uploaded_file = st.file_uploader(translation["upload_prompt"], type="csv")
+    uploaded_file = st.file_uploader(translation["upload_prompt"], type=["csv", "xls", "xlsx"])
+    
     if uploaded_file is not None:
-        data = process_data(uploaded_file)
+        # Check the file extension and process accordingly
+        file_extension = uploaded_file.name.split('.')[-1].lower()
+        if file_extension in ['csv', 'xls', 'xlsx']:
+            data = process_data(uploaded_file, file_extension)
+        else:
+            st.error(translation["file_type_error"])  # Provide a translation for unsupported file types
+
         if data is None:
-            st.error(translation["process_error"])  # Assuming you have a key "process_error" in your translations
-
-    # Check if data is loaded and not empty
-    if data is None or data.empty:
-        st.warning(translation["please_upload"])  # Assuming you have a key "please_upload" in your translations
-        return  # If data is None or empty, return to prevent executing the rest of the code
-
+            st.error(translation["process_error"])
+        else:
+            # Show this warning if no file is uploaded
+            st.warning(translation["please_upload"])
 
     # # Now use the translation dict to access the translations
     # uploaded_file = st.file_uploader(translation["upload_prompt"], type="csv")  # Assuming you have a key "upload_prompt"
@@ -53,7 +57,7 @@ def main():
 
     # Ensure data is not empty
     if data is None or data.empty:
-        st.warning(translation("Please upload a CSV file to view the dashboard."))
+        st.warning(translation["please_upload"])
         return
 
     # Replace the title
