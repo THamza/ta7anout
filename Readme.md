@@ -38,9 +38,9 @@ This Python and Streamlit-based application offers a dynamic and interactive das
 Your CSV file must include these columns:
 
 - **SKU**: Unique identifier for each product.
+- **Name**: Name for each product.
 - **Price**: Sale price of the product.
 - **Quantity**: Number of units sold.
-- **Date**: Date of the sale.
 - **Total**: Total sales amount (calculated as Price \* Quantity).
 - **Margin**: Profit margin per product.
 
@@ -53,9 +53,9 @@ Your CSV file must include these columns:
 
 ### Sample CSV Format
 
-SKU,Price,Quantity,Date,Total,Margin
-1001,20,5,2023-01-01,100,10
-1002,15,8,2023-01-02,120,12
+SKU,Name,Price,Quantity,Total,Margin
+1001,Product1,20,5,100,10
+1002,Product2,15,8,120,12
 
 ## Customization
 

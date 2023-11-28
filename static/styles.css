@@ -1,0 +1,128 @@
+/* Main styles for the dashboard */
+
+/* General Styles */
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Customizing Headers */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #333;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+/* Customizing Text */
+p,
+label,
+li {
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Customizing Links */
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* Streamlit Components Customization */
+
+/* Customizing Buttons */
+.stButton > button {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.stButton > button:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+
+/* Customizing File Uploader */
+.stFileUploader {
+  border: 2px dashed #007bff;
+  border-radius: 5px;
+  padding: 20px;
+  transition: border 0.3s ease-in-out;
+}
+
+.stFileUploader:hover {
+  border-color: #0056b3;
+}
+
+/* Customizing Tables */
+.stDataFrame {
+  width: 100%;
+  text-align: left;
+}
+
+/* Customizing Checkboxes */
+.stCheckbox {
+  display: block;
+  margin-top: 0.5rem;
+}
+
+/* Customizing Selectbox */
+.stSelectbox {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Customizing Sidebar */
+.sidebar .sidebar-content {
+  background-color: #f8f9fa;
+  padding: 20px;
+}
+
+/* Customizing Cards */
+.card {
+  background-color: #fff;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin-bottom: 20px;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.card-body {
+  font-size: 14px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  /* Adjust styles for small screens */
+  .card {
+    padding: 10px;
+  }
+
+  .stButton > button {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+}
