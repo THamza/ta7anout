@@ -26,6 +26,7 @@ class Translator:
                 "quantity": "Quantity",
                 "sku": "SKU",
                 "total_sales": "Total Sales",
+                "data_error": "The uploaded data is invalid. Please check the file and try again.",
             },
             "Français": {
                 "title": "Tableau de Bord des Ventes de Produits",
@@ -49,7 +50,7 @@ class Translator:
                 "quantity": "Quantité",
                 "sku": "SKU",
                 "total_sales": "Ventes Totales",
-
+                "data_error": "Les données téléchargées ne sont pas valides. Veuillez vérifier le fichier et réessayer.",
             },
             "العربية": {
                 "title": "لوحة مبيعات المنتجات",
@@ -73,6 +74,7 @@ class Translator:
                 "quantity": "الكمية",
                 "sku": "الرقم التسلسلي",
                 "total_sales": "إجمالي المبيعات",
+                "data_error": "البيانات التي تم تحميلها غير صالحة. يرجى التحقق من الملف والمحاولة مرة أخرى.",
             },
             "ⵜⴰⵎⴰⵣⵉⵖⵜ": {
                 "title": "ⵜⴰⴽⵡⵉⵍⵜ ⵏ ⵜⵓⴳⴳⴰⵔⴰ ⵏ ⵉⵎⴰⵍⵢⴰⵏ",
@@ -96,6 +98,7 @@ class Translator:
                 "quantity": "ⵜⴰⵙⵉⵏⵏⴰ",
                 "sku": "ⵙⴽⵓ",
                 "total_sales": "ⵜⴰⵎⵓⵍⵜ ⵏ ⵜⵓⴳⴳⴰⵔⴰ",
+                "data_error": "ⵉⵎⴰⵍⵢⴰⵏ ⵏ ⵜⵓⴳⴳⴰⵔⴰ ⵏ ⵉⵎⴰⵍⵢⴰⵏ ⴰⵙⵏⵓⵔⵓ. ⵉⵍⵍⴰ ⵜⴰⵎⵓⵍⵜ ⵏ ⵜⵓⴳⴳⴰⵔⴰ ⵏ ⵉⵎⴰⵍⵢⴰⵏ ⵏ ⵜⵓⴳⴳⴰⵔⴰ ⵏ ⵉⵎⴰⵍⵢⴰⵏ.",
             },
         }
 
