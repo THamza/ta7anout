@@ -16,6 +16,21 @@ def main():
     # Inject custom CSS
     css_injector.add_custom_css()
 
+    # Inject Google Analytics script
+    google_analytics_script = """
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-JQ58XEGTNZ"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-JQ58XEGTNZ');
+        </script>
+    """
+    st.markdown(google_analytics_script, unsafe_allow_html=True)
+
+
     # Sidebar language selector
     language = st.sidebar.selectbox(
         "Language",
