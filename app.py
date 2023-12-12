@@ -29,7 +29,11 @@ def main():
     data = None
 
     # Initialize data and upload file section
-    uploaded_file = st.file_uploader(translation["upload_prompt"], type=["csv", "xls", "xlsx"])
+    uploaded_file = st.file_uploader(
+    translation["upload_prompt"], 
+    type=["csv", "xls", "xlsx", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"]
+)
+
     
     if uploaded_file is not None:
         # Check the file extension and process accordingly
@@ -70,6 +74,8 @@ def main():
         selected_sku = st.sidebar.multiselect(translation["select_sku"], options=data['SKU'].unique())
         if selected_sku:
             data = data[data['SKU'].isin(selected_sku)]
+            # Reset index after filtering
+            data.reset_index(drop=True, inplace=True)
 
     # Tabs setup
     tab1, tab2, tab3 = st.tabs([translation["overview_tab"], translation["analysis_tab"], translation["data_view_tab"]])
