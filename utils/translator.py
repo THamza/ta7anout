@@ -29,6 +29,8 @@ class Translator:
                 "data_error": "The uploaded data is invalid. Please check the file and try again.",
                 "total_profit": "Total Profit",
                 "total_items_sold": "Total Items Sold",
+                "unit_price_distribution": "Unit Price Distribution",
+                "profit_margin_by_sku": "Profit Margin by SKU",
             },
             "Français": {
                 "title": "Tableau de Bord des Ventes de Produits",
@@ -55,6 +57,8 @@ class Translator:
                 "data_error": "Les données téléchargées ne sont pas valides. Veuillez vérifier le fichier et réessayer.",
                 "total_profit": "Profit Total",
                 "total_items_sold": "Articles Vendus",
+                "unit_price_distribution": "Distribution des Prix Unitaire",
+                "profit_margin_by_sku": "Marge de Profit par SKU",
             },
             "العربية": {
                 "title": "لوحة مبيعات المنتجات",
@@ -81,6 +85,8 @@ class Translator:
                 "data_error": "البيانات التي تم تحميلها غير صالحة. يرجى التحقق من الملف والمحاولة مرة أخرى.",
                 "total_profit": "إجمالي الربح",
                 "total_items_sold": "إجمالي العناصر المباعة",
+                "unit_price_distribution": "توزيع سعر الوحدة",
+                "profit_margin_by_sku": "هامش الربح حسب الرقم التسلسلي",
             },
             "ⵜⴰⵎⴰⵣⵉⵖⵜ": {
                 "title": "ⵜⴰⴽⵡⵉⵍⵜ ⵏ ⵜⵓⴳⴳⴰⵔⴰ ⵏ ⵉⵎⴰⵍⵢⴰⵏ",
@@ -107,6 +113,8 @@ class Translator:
                 "data_error": "ⵉⵎⴰⵍⵢⴰⵏ ⵏ ⵜⵓⴳⴳⴰⵔⴰ ⵏ ⵉⵎⴰⵍⵢⴰⵏ ⴰⵙⵏⵓⵔⵓ. ⵉⵍⵍⴰ ⵜⴰⵎⵓⵍⵜ ⵏ ⵜⵓⴳⴳⴰⵔⴰ ⵏ ⵉⵎⴰⵍⵢⴰⵏ ⵏ ⵜⵓⴳⴳⴰⵔⴰ ⵏ ⵉⵎⴰⵍⵢⴰⵏ.",
                 "total_profit": "ⵜⴰⵎⵓⵍⵜ ⵏ ⵜⴰⴳⴻⵔⵎⵜ",
                 "total_items_sold": "ⵜⴰⵎⵓⵍⵜ ⵏ ⵜⵓⴳⴳⴰⵔⴰ",
+                "unit_price_distribution": "ⵜⵓⵙⵉⵏⵏⴰ ⵏ ⵜⴰⵙⴰⵖⵜ ⵏ ⵜⵓⵙⵉⵏⵏⴰⵏ",
+                "profit_margin_by_sku": "ⵜⴰⴳⴻⵔⵎⵜ ⵏ ⵜⴰⴳⴻⵔⵎⵜ ⵏ ⵜⵓⴳⴳⴰⵔⴰ",
             },
             "Tamazight": {
                 "title": "Takwil2t n Tuggara n Ima9yan",
@@ -132,7 +140,9 @@ class Translator:
                 "total_sales": "Tamul2t n Tuggara",
                 "data_error": "Imalyan n Tuggara n Imalyan Asnuru. Illa Tamul2t n Tuggara n Imalyan n Tuggara n Imalyan.",
                 "total_profit": "Tamul2t n Tagermt",
-                "total_items_sold": "Tamul2t n Tuggara"
+                "total_items_sold": "Tamul2t n Tuggara",
+                "unit_price_distribution": "Tawzint n Tasag9t n Tagermt",
+                "profit_margin_by_sku": "Tamul2t n Tagermt n SKU",
             },
             "تمازيغت": {
                 "title": "تاكويلت ن توݣݣارا ن إماليان",
@@ -158,7 +168,9 @@ class Translator:
                 "total_sales": "تامولت ن توݣݣارا",
                 "data_error": "إماليان ن توݣݣارا ن إماليان أسنورو. إيلا تامولت ن توݣݣارا ن إماليان ن توݣݣارا ن إماليان.",
                 "total_profit": "تامولت ن تاݣرمت",
-                "total_items_sold": "تامولت ن توݣݣارا"
+                "total_items_sold": "تامولت ن توݣݣارا",
+                "unit_price_distribution": "تاوزينت ن تاساغت ن تاݣرمت",
+                "profit_margin_by_sku": "تامولت ن تاݣرمت ن سكو",
             }
         }
 

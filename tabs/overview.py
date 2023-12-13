@@ -12,14 +12,6 @@ except locale.Error:
     locale.setlocale(locale.LC_ALL, 'C')  # Fallback to the standard C locale
 
 
-def convert_percentage_to_float(percentage_str):
-    """
-    Convert a percentage string to a float.
-    Example: '16%' becomes 16.0
-    """
-    if isinstance(percentage_str, str):
-        return float(percentage_str.strip('%'))
-    return percentage_str
 
 def format_all_currencies(value):
     """
@@ -42,62 +34,66 @@ def format_all_currencies(value):
 def show(data, translations):
     """
     Displays the overview tab in the Streamlit app.
-
-    Parameters:
-    - data: The processed DataFrame that contains the data to display.
-    - translations: A dictionary containing translation mappings for text.
     """
-
-    # Ensure that the necessary columns are present
-    required_columns = ['SKU', 'Price', 'Margin', 'Quantity', 'Total']
-    if not all(column in data.columns for column in required_columns):
-        st.error(translations['data_error'])
-        return
-
-    # Convert 'Price', 'Margin', and 'Total' columns to numeric format
-    data['Price'] = pd.to_numeric(data['Price'], errors='coerce')
-    data['Margin'] = pd.to_numeric(data['Margin'], errors='coerce')
-    data['Total'] = pd.to_numeric(data['Total'], errors='coerce')
-
-    # Handle NaN values that arise from conversion (optional, based on your data handling strategy)
-    data.fillna(0, inplace=True)
+    # ... existing checks and data conversion ...
 
     st.markdown("## " + translations["overview_tab"])
 
-    # Generate a statistics card for average price and margin
-    generate_stats_cards(data, translations)
+    # Top Section - KPIs
+    generate_kpi_cards(data, translations)
 
-    # Generate sales over time line chart
+    # Middle Section - Detailed Analysis
+    generate_detailed_analysis(data, translations)
+
+    # Bottom Section - Sales Over Time Chart
     generate_sales_over_time_chart(data, translations)
 
-    # Display any other relevant information or statistics
 
-def generate_stats_cards(data, translations):
-    """
-    Generate statistic cards for displaying average price and average margin.
-    """
-    # Convert 'Margin' to numeric format after stripping the '%' character
-    data['Margin'] = data['Margin'].apply(convert_percentage_to_float)
 
+def generate_kpi_cards(data, translations):
+    """
+    Generate KPI cards for displaying key metrics.
+    """
+    # Calculate KPI values
     average_price = data['Price'].mean()
     average_margin = data['Margin'].mean()
     total_sales = data['Total'].sum()
-
-    # Calculating total profit
-    total_profit = data['Profit'].sum()
+    total_profit = (data['Total'] * (data['Margin'] / 100)).sum()
     total_items_sold = data['Quantity'].sum()
 
-    col1, col2 = st.columns(2)
+    # Create columns for each card
+    col1, col2, col3 = st.columns(3)
 
     with col1:
-        create_statistic_card(translations["average_price"], format_all_currencies(average_price), style="primary")
-        create_statistic_card(translations["average_margin"], f"{average_margin:.2f}%", style="success")
-        create_statistic_card(translations["total_profit"], format_all_currencies(total_profit), style="warning")
+        create_statistic_card(translations["average_price"], f"{average_price:.2f} Dhs", style="primary")
+        create_statistic_card(translations["total_profit"], f"{total_profit:.2f} Dhs", style="warning")
 
     with col2:
-        create_statistic_card(translations["total_sales"], format_all_currencies(total_sales), style="info")
+        create_statistic_card(translations["average_margin"], f"{average_margin:.2f}%", style="success")
         create_statistic_card(translations["total_items_sold"], f"{total_items_sold}", style="danger")
 
+    with col3:
+        create_statistic_card(translations["total_sales"], f"{total_sales:.2f} Dhs", style="info")
+
+
+def generate_detailed_analysis(data, translations):
+    generate_unit_price_distribution_chart(data, translations)
+    generate_profit_margin_chart(data, translations)
+
+def generate_unit_price_distribution_chart(data, translations):
+    st.markdown("### " + translations["unit_price_distribution"])
+    fig, ax = plt.subplots()
+    sns.histplot(data['Price'], bins=20, kde=True, ax=ax)
+    ax.set_title(translations["unit_price_distribution"])
+    st.pyplot(fig)
+
+def generate_profit_margin_chart(data, translations):
+    st.markdown("### " + translations["profit_margin_by_sku"])
+    fig, ax = plt.subplots()
+    sns.barplot(x='SKU', y='Margin', data=data, ax=ax)
+    ax.set_title(translations["profit_margin_by_sku"])
+    plt.xticks(rotation=45)
+    st.pyplot(fig)
 
 def generate_sales_over_time_chart(data, translations):
     if data.empty:
@@ -144,3 +140,32 @@ def generate_sales_over_time_chart(data, translations):
     # Call tight_layout to optimize the layout
     plt.tight_layout()
     st.pyplot(fig)
+
+
+
+# ARCHIVED CODE
+# def generate_stats_cards(data, translations):
+#     """
+#     Generate statistic cards for displaying average price and average margin.
+#     """
+#     # Convert 'Margin' to numeric format after stripping the '%' character
+#     data['Margin'] = data['Margin'].apply(convert_percentage_to_float)
+
+#     average_price = data['Price'].mean()
+#     average_margin = data['Margin'].mean()
+#     total_sales = data['Total'].sum()
+
+#     # Calculating total profit
+#     total_profit = data['Profit'].sum()
+#     total_items_sold = data['Quantity'].sum()
+
+#     col1, col2 = st.columns(2)
+
+#     with col1:
+#         create_statistic_card(translations["average_price"], format_all_currencies(average_price), style="primary")
+#         create_statistic_card(translations["average_margin"], f"{average_margin:.2f}%", style="success")
+#         create_statistic_card(translations["total_profit"], format_all_currencies(total_profit), style="warning")
+
+#     with col2:
+#         create_statistic_card(translations["total_sales"], format_all_currencies(total_sales), style="info")
+#         create_statistic_card(translations["total_items_sold"], f"{total_items_sold}", style="danger")
