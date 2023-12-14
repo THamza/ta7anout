@@ -55,25 +55,25 @@ def generate_kpi_cards(data, translations):
     Generate KPI cards for displaying key metrics.
     """
     # Calculate KPI values
-    average_price = data['Coût'].mean()
-    average_margin = data['Marge'].mean()
+    average_price = data['Price'].mean()
+    average_margin = data['Margin'].mean()
     total_sales = data['Total'].sum()
-    total_profit = (data['Total'] * (data['Marge'] / 100)).sum()
-    total_items_sold = data['Quantité'].sum()
+    total_profit = (data['Total'] * (data['Margin'] / 100)).sum()
+    total_items_sold = data['Quantity'].sum()
 
     # Create columns for each card
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        create_statistic_card(translations["average_price"], f"{format_all_currencies(average_price)}", style="primary")
-        create_statistic_card(translations["total_profit"], f"{format_all_currencies(total_profit)}", style="warning")
+        create_statistic_card(translations["average_price"], f"{average_price:.2f} Dhs", style="primary")
+        create_statistic_card(translations["total_profit"], f"{total_profit:.2f} Dhs", style="warning")
 
     with col2:
         create_statistic_card(translations["average_margin"], f"{average_margin:.2f}%", style="success")
         create_statistic_card(translations["total_items_sold"], f"{total_items_sold}", style="danger")
 
     with col3:
-        create_statistic_card(translations["total_sales"], f"{format_all_currencies(total_sales)}", style="info")
+        create_statistic_card(translations["total_sales"], f"{total_sales:.2f} Dhs", style="info")
 
 
 def generate_detailed_analysis(data, translations):
@@ -83,14 +83,14 @@ def generate_detailed_analysis(data, translations):
 def generate_unit_price_distribution_chart(data, translations):
     st.markdown("### " + translations["unit_price_distribution"])
     fig, ax = plt.subplots()
-    sns.histplot(data['Coût'], bins=20, kde=True, ax=ax)
+    sns.histplot(data['Price'], bins=20, kde=True, ax=ax)
     ax.set_title(translations["unit_price_distribution"])
     st.pyplot(fig)
 
 def generate_profit_margin_chart(data, translations):
     st.markdown("### " + translations["profit_margin_by_sku"])
     fig, ax = plt.subplots()
-    sns.barplot(x='Produit', y='Marge', data=data, ax=ax)
+    sns.barplot(x='SKU', y='Margin', data=data, ax=ax)
     ax.set_title(translations["profit_margin_by_sku"])
     plt.xticks(rotation=45)
     st.pyplot(fig)
@@ -104,16 +104,16 @@ def generate_sales_over_time_chart(data, translations):
     fig, ax1 = plt.subplots(figsize=(10, 6))  # Adjust as needed
 
     # Plot the total sales bars
-    barplot = sns.barplot(x='Produit', y='Total', data=data, ax=ax1, color='blue', label='Total Sales')
+    barplot = sns.barplot(x='SKU', y='Total', data=data, ax=ax1, color='blue', label='Total Sales')
 
     # Create the secondary y-axis for the total quantity sold
     ax2 = ax1.twinx()
-    lineplot_quantity = sns.lineplot(x='Produit', y='Quantité', data=data, ax=ax2, color='green', marker='o', label='Total Quantity Sold')
-    lineplot_profit = sns.lineplot(x='Produit', y='Profit', data=data, ax=ax2, color='red', marker='x', label='Total Profit Made')
+    lineplot_quantity = sns.lineplot(x='SKU', y='Quantity', data=data, ax=ax2, color='green', marker='o', label='Total Quantity Sold')
+    lineplot_profit = sns.lineplot(x='SKU', y='Profit', data=data, ax=ax2, color='red', marker='x', label='Total Profit Made')
 
     # Annotate bars with unitary price
     for index, row in data.iterrows():
-        unit_price = row['Coût']  # Assuming 'Price' is the unitary price column in your dataset
+        unit_price = row['Price']  # Assuming 'Price' is the unitary price column in your dataset
         ax1.text(
             x=index, 
             y=row['Total'], 
@@ -124,7 +124,7 @@ def generate_sales_over_time_chart(data, translations):
         )
 
     # Set axis labels and legend
-    ax1.set_xlabel('Produit')
+    ax1.set_xlabel('SKU')
     ax1.set_ylabel('Total Sales (Dhs)', color='blue')
     ax2.set_ylabel('Total Quantity Sold / Total Profit Made', color='green')
     ax1.tick_params(axis='y', labelcolor='blue')
@@ -149,15 +149,15 @@ def generate_sales_over_time_chart(data, translations):
 #     Generate statistic cards for displaying average price and average margin.
 #     """
 #     # Convert 'Margin' to numeric format after stripping the '%' character
-#     data['Marge'] = data['Marge'].apply(convert_percentage_to_float)
+#     data['Margin'] = data['Margin'].apply(convert_percentage_to_float)
 
-#     average_price = data['Coût'].mean()
-#     average_margin = data['Marge'].mean()
+#     average_price = data['Price'].mean()
+#     average_margin = data['Margin'].mean()
 #     total_sales = data['Total'].sum()
 
 #     # Calculating total profit
 #     total_profit = data['Profit'].sum()
-#     total_items_sold = data['Quantité'].sum()
+#     total_items_sold = data['Quantity'].sum()
 
 #     col1, col2 = st.columns(2)
 

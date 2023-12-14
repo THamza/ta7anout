@@ -115,10 +115,10 @@ def main():
     st.sidebar.header(translation["filter"])
 
     # Filtering options in sidebar
-    if 'Produit' in data.columns:
-        selected_sku = st.sidebar.multiselect(translation["select_sku"], options=data['Produit'].unique())
+    if 'SKU' in data.columns:
+        selected_sku = st.sidebar.multiselect(translation["select_sku"], options=data['SKU'].unique())
         if selected_sku:
-            data = data[data['Produit'].isin(selected_sku)]
+            data = data[data['SKU'].isin(selected_sku)]
             # Reset index after filtering
             data.reset_index(drop=True, inplace=True)
 
@@ -126,8 +126,8 @@ def main():
     tab1, tab2, tab3 = st.tabs([translation["overview_tab"], translation["analysis_tab"], translation["data_view_tab"]])
 
     # Apply this function to your data columns that require numeric conversion
-    data['Coût'] = data['Coût'].apply(convert_to_float)
-    data['Marge'] = data['Marge'].apply(convert_to_float)
+    data['Price'] = data['Price'].apply(convert_to_float)
+    data['Margin'] = data['Margin'].apply(convert_to_float)
     data['Total'] = data['Total'].apply(convert_to_float)
     # Overview Tab Content
     with tab1:

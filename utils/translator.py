@@ -31,8 +31,6 @@ class Translator:
                 "total_items_sold": "Total Items Sold",
                 "unit_price_distribution": "Unit Price Distribution",
                 "profit_margin_by_sku": "Profit Margin by SKU",
-                "process_error": "Error: Could not process the uploaded file. Please check the file and try again.",
-                "please_upload": "Please upload a CSV file to view the dashboard.",
             },
             "Français": {
                 "title": "Tableau de Bord des Ventes de Produits",
@@ -61,8 +59,6 @@ class Translator:
                 "total_items_sold": "Articles Vendus",
                 "unit_price_distribution": "Distribution des Prix Unitaire",
                 "profit_margin_by_sku": "Marge de Profit par SKU",
-                "process_error": "Erreur: Impossible de traiter le fichier téléchargé. Veuillez vérifier le fichier et réessayer.",
-                "please_upload": "Veuillez télécharger un fichier CSV pour afficher le tableau de bord.",
             },
             "العربية": {
                 "title": "لوحة مبيعات المنتجات",
@@ -91,8 +87,6 @@ class Translator:
                 "total_items_sold": "إجمالي العناصر المباعة",
                 "unit_price_distribution": "توزيع سعر الوحدة",
                 "profit_margin_by_sku": "هامش الربح حسب الرقم التسلسلي",
-                "process_error": "خطأ: لا يمكن معالجة الملف المحمل. يرجى التحقق من الملف والمحاولة مرة أخرى.",
-                "please_upload": "يرجى تحميل ملف CSV لعرض لوحة المعلومات.",
             },
             "ⵜⴰⵎⴰⵣⵉⵖⵜ": {
                 "title": "ⵜⴰⴽⵡⵉⵍⵜ ⵏ ⵜⵓⴳⴳⴰⵔⴰ ⵏ ⵉⵎⴰⵍⵢⴰⵏ",
@@ -121,8 +115,6 @@ class Translator:
                 "total_items_sold": "ⵜⴰⵎⵓⵍⵜ ⵏ ⵜⵓⴳⴳⴰⵔⴰ",
                 "unit_price_distribution": "ⵜⵓⵙⵉⵏⵏⴰ ⵏ ⵜⴰⵙⴰⵖⵜ ⵏ ⵜⵓⵙⵉⵏⵏⴰⵏ",
                 "profit_margin_by_sku": "ⵜⴰⴳⴻⵔⵎⵜ ⵏ ⵜⴰⴳⴻⵔⵎⵜ ⵏ ⵜⵓⴳⴳⴰⵔⴰ",
-                "process_error": "ⵉⵎⴰⵍⵢⴰⵏ ⵏ ⵜⵓⴳⴳⴰⵔⴰ ⵏ ⵉⵎⴰⵍⵢⴰⵏ ⴰⵙⵏⵓⵔⵓ. ⵉⵍⵍⴰ ⵜⴰⵎⵓⵍⵜ ⵏ ⵜⵓⴳⴳⴰⵔⴰ ⵏ ⵉⵎⴰⵍⵢⴰⵏ ⴰⵙⵏⵓⵔⵓ.",
-                "please_upload": "ⵓⵔⴰ ⵜⵉⵍⵉⵙⵉ ⵏ ⵉⵎⴰⵍⵢⴰⵏ ⵏ ⵜⵓⴳⴳⴰⵔⴰ ⵏ ⵉⵎⴰⵍⵢⴰⵏ ⵏ ⵜⵓⴳⴳⴰⵔⴰ ⵏ ⵉⵎⴰⵍⵢⴰⵏ.",
             },
             "Tamazight": {
                 "title": "Takwil2t n Tuggara n Ima9yan",
@@ -151,8 +143,6 @@ class Translator:
                 "total_items_sold": "Tamul2t n Tuggara",
                 "unit_price_distribution": "Tawzint n Tasag9t n Tagermt",
                 "profit_margin_by_sku": "Tamul2t n Tagermt n SKU",
-                "process_error": "Error: Could not process the uploaded file. Please check the file and try again.",
-                "please_upload": "Please upload a CSV file to view the dashboard.",
             },
             "تمازيغت": {
                 "title": "تاكويلت ن توݣݣارا ن إماليان",
@@ -181,8 +171,6 @@ class Translator:
                 "total_items_sold": "تامولت ن توݣݣارا",
                 "unit_price_distribution": "تاوزينت ن تاساغت ن تاݣرمت",
                 "profit_margin_by_sku": "تامولت ن تاݣرمت ن سكو",
-                "process_error": "Error: Could not process the uploaded file. Please check the file and try again.",
-                "please_upload": "Please upload a CSV file to view the dashboard.",
             }
         }
 

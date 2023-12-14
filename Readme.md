@@ -64,7 +64,7 @@ SKU,Name,Price,Quantity,Total,Margin
 
 ## Troubleshooting
 
-- **Data Upload Issues**: Check CSV format, especially the 'Produit' column.
+- **Data Upload Issues**: Check CSV format, especially the 'SKU' column.
 - **Graph Rendering Problems**: Ensure required columns like 'Date', 'Total', and 'Margin' are present.
 
 ## Support
