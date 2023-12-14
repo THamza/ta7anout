@@ -19,7 +19,9 @@ def process_data(uploaded_file, file_extension):
                 data = pd.read_excel(uploaded_file)
             else:
                 return None  # Handle other file formats or raise an error
-
+            
+            #rename fields from french to english
+            data.rename(columns={'Produit':'SKU','Quantité': 'Quantity', 'Coût': 'Price', 'Marge': 'Margin'}, inplace=True)
             # Perform some basic validation
             if 'SKU' not in data.columns:
                 st.error("The uploaded file must have an 'SKU' column.")

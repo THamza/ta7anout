@@ -7,7 +7,7 @@ import locale
 
 
 try:
-    locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
+    locale.setlocale(locale.LC_ALL, 'fr_FR.UTF-8')
 except locale.Error:
     locale.setlocale(locale.LC_ALL, 'C')  # Fallback to the standard C locale
 
@@ -27,6 +27,7 @@ def format_all_currencies(value):
 
     # Separate the currencies by line breaks for better readability
     # return f"{formatted_dirham}<br>{formatted_ryal}<br>{formatted_centime}"
+    
     return f"{formatted_dirham}<br>"
 
 
