@@ -14,7 +14,7 @@ def show(data, translations):
     st.markdown("## " + translations["analysis_tab"])
 
     # Conditional rendering of analysis components based on the data
-    if 'Margin' in data.columns and 'Quantity' in data.columns:
+    if 'Margin' in data.columns and 'Quantité' in data.columns:
         # Display margin analysis
         display_margin_analysis(data, translations)
         
@@ -33,7 +33,7 @@ def display_margin_analysis(data, translations):
     """
     st.markdown("### " + translations["margin_analysis"])
     fig, ax = plt.subplots()
-    sns.histplot(data['Margin'], bins=20, kde=True, ax=ax)
+    sns.histplot(data['Marge'], bins=20, kde=True, ax=ax)
     st.pyplot(fig)
 
 
@@ -43,7 +43,7 @@ def display_price_quantity_correlation(data, translations):
     """
     st.markdown("### " + translations["correlation_analysis"])
     fig, ax = plt.subplots()
-    sns.scatterplot(x='Price', y='Quantity', data=data, ax=ax)
+    sns.scatterplot(x='Coût', y='Quantité', data=data, ax=ax)
     st.pyplot(fig)
 
 
@@ -52,7 +52,7 @@ def display_top_selling_products(data, translations):
     Display a bar chart of the top-selling products.
     """
     st.markdown("### " + translations["top_selling_products"])
-    top_selling = data.groupby('SKU')['Quantity'].sum().sort_values(ascending=False).head(10)
+    top_selling = data.groupby('Produit')['Quantité'].sum().sort_values(ascending=False).head(10)
     fig, ax = plt.subplots()
     sns.barplot(x=top_selling.values, y=top_selling.index, palette="viridis", ax=ax)
     ax.set_xlabel(translations["quantity"])

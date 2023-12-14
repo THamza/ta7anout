@@ -20,9 +20,10 @@ def process_data(uploaded_file, file_extension):
             else:
                 return None  # Handle other file formats or raise an error
 
+            data.rename(columns={"Produit": "SKU", "Quantité": "Quantity", "Coût": "Price", "Marge": "Margin"}, inplace=True)
             # Perform some basic validation
-            if 'SKU' not in data.columns:
-                st.error("The uploaded file must have an 'SKU' column.")
+            if 'Produit' not in data.columns:
+                st.error("The uploaded file must have an 'Produit' column.")
                 return None
             # Add additional necessary validations as needed
             return data
@@ -48,8 +49,8 @@ def load_data(file_path):
     try:
         data = pd.read_csv(file_path)
         # Perform some basic validation
-        if 'SKU' not in data.columns:
-            st.error("The CSV file must have an 'SKU' column.")
+        if 'Produit' not in data.columns:
+            st.error("The CSV file must have an 'Produit' column.")
             return None
         # Add additional necessary validations as needed
         return data
