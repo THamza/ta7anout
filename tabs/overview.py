@@ -33,10 +33,13 @@ def show(data, translations):
     """
     # ... existing checks and data conversion ...
 
-    st.markdown("## " + translations["overview_tab"])
-
     # Top Section - KPIs
     generate_kpi_cards(data, translations)
+
+    # Top products
+    generate_top_products_cards(data, translations)
+
+    show_profitability_analysis(data, translations)
 
     # Middle Section - Detailed Analysis
     generate_detailed_analysis(data, translations)
@@ -44,6 +47,55 @@ def show(data, translations):
     # Bottom Section - Sales Over Time Chart
     generate_sales_over_time_chart(data, translations)
 
+def plot_profitability_chart(data, selected_skus):
+    """
+    Plots a bar chart showing the profitability of the selected top products.
+    """
+    # Filter data to include only the selected products
+    filtered_data = data[data['SKU'].isin(selected_skus)]
+
+    # Create a bar chart
+    plt.figure(figsize=(10, 6))
+    barplot = sns.barplot(
+        x='SKU', 
+        y='Profit', 
+        data=filtered_data,
+        order=selected_skus  # This ensures the bars follow the selected order
+    )
+
+    # Add labels and title
+    plt.title('Profitability of Top Products')
+    plt.xlabel('Product SKU')
+    plt.ylabel('Total Profit')
+    
+    # Rotate x-axis labels
+    plt.xticks(rotation=45)  # Rotate labels to make them readable
+
+    # Show the plot
+    st.pyplot(barplot.figure)
+
+def show_profitability_analysis(data, translations):
+    """
+    Shows an interactive profitability analysis section.
+    """
+    st.markdown("## " + translations["profitability_analysis"])
+
+    # Get all unique SKUs and the top 10 profitable SKUs
+    all_skus = data['SKU'].unique().tolist()
+    top_skus = data.groupby('SKU')['Profit'].sum().sort_values(ascending=False).head(10).index.tolist()
+
+    # Multiselect dropdown that includes all products but defaults to the top 10
+    selected_skus = st.multiselect(
+        label=translations["select_products_to_view"], 
+        options=all_skus, 
+        default=top_skus  # Set the top 10 SKUs as the default selection
+    )
+
+    # If products are selected, plot the chart
+    if selected_skus:
+        plot_profitability_chart(data, selected_skus)
+    else:
+        st.warning(translations["no_product_selected_warning"])
 
 # Assuming you have a function to convert the raw metrics into formatted strings
 def format_metric(value, metric_type):
@@ -119,12 +171,30 @@ def create_multi_metric_card(rank, sku, metrics, translations):
  
 
  
+def generate_top_products_cards(data, translations):
+    st.markdown("## " + translations["top_products"])
+     # Calculate top 3 selling products and their respective total profit, items sold, and total sales
+    top_products_data = data.groupby('SKU').agg({
+        'Quantity': 'sum',
+        'Total': 'sum',
+        'Profit': 'sum',
+    }).sort_values(by='Quantity', ascending=False).head(3)
+
+    col1, col2, col3 = st.columns(3)
+    for i, (sku, metrics) in enumerate(top_products_data.iterrows(), start=1):
+        with (col1 if i == 1 else col2 if i == 2 else col3):
+            create_multi_metric_card(i, sku, metrics, translations)
+
+
 
 
 def generate_kpi_cards(data, translations):
     """
     Generate KPI cards for displaying key metrics.
     """ 
+
+    st.markdown("## " + translations["overview_tab"])
+
     # Calculate KPI values
     average_price = data['Price'].mean()
     average_margin = data['Margin'].mean()
@@ -132,13 +202,7 @@ def generate_kpi_cards(data, translations):
     total_profit = data['Profit'].sum()
     total_items_sold = data['Quantity'].sum()  
 
-    # Calculate top 3 selling products and their respective total profit, items sold, and total sales
-    top_products_data = data.groupby('SKU').agg({
-        'Quantity': 'sum',
-        'Total': 'sum',
-        'Profit': 'sum',
-    }).sort_values(by='Quantity', ascending=False).head(3)
-
+   
     # Create columns for each card
     col1, col2, col3 = st.columns(3)
 
@@ -150,10 +214,7 @@ def generate_kpi_cards(data, translations):
 
     with col3:
         create_statistic_card(translations["total_items_sold"], f"{total_items_sold}", style="danger")
-    
-    for i, (sku, metrics) in enumerate(top_products_data.iterrows(), start=1):
-        with (col1 if i == 1 else col2 if i == 2 else col3):
-            create_multi_metric_card(i, sku, metrics, translations)
+
 
 
 def generate_detailed_analysis(data, translations):

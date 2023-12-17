@@ -36,6 +36,11 @@ class Translator:
                 "best_selling_product": "1# Product",
                 "second_best_selling_product": "2# Prodzuctz",
                 "third_best_selling_product": "3# Selling Product",
+                "top_products": "Top Products",
+                "profitability_analysis": "Profitability Analysis",
+                "select_products_to_view": "Select products to view",
+                "no_product_selected_warning": "No product selected. Please select at least one product to view.",
+
             },
             "Français": {
                 "title": "Tableau de Bord des Ventes de Produits",
@@ -69,6 +74,10 @@ class Translator:
                 "best_selling_product": "1# Produit Vendu",
                 "second_best_selling_product": "2# Meilleur Produit Vendu",
                 "third_best_selling_product": "3# Meilleur Produit Vendu",
+                "top_products": "Top Produits",
+                "profitability_analysis": "Analyse de la Rentabilité",
+                "select_products_to_view": "Sélectionnez les produits à afficher",
+                "no_product_selected_warning": "Aucun produit sélectionné. Veuillez sélectionner au moins un produit à afficher.",
             },
             "العربية": {
                 "title": "لوحة مبيعات المنتجات",
@@ -102,6 +111,10 @@ class Translator:
                 "best_selling_product": "أفضل منتج مباع",
                 "second_best_selling_product": "ثاني أفضل منتج مباع",
                 "third_best_selling_product": "ثالث أفضل منتج مباع",
+                "top_products": "أفضل المنتجات",
+                "profitability_analysis": "تحليل الربحية",
+                "select_products_to_view": "حدد المنتجات لعرضها",
+                "no_product_selected_warning": "لم يتم تحديد أي منتج. يرجى تحديد منتج واحد على الأقل لعرضه.",
             },
             "ⵜⴰⵎⴰⵣⵉⵖⵜ": {
                 "title": "ⵜⴰⴽⵡⵉⵍⵜ ⵏ ⵜⵓⴳⴳⴰⵔⴰ ⵏ ⵉⵎⴰⵍⵢⴰⵏ",
@@ -135,6 +148,10 @@ class Translator:
                 "best_selling_product": "ⵜⵓⴳⴳⴰⵔⴰ ⵜⴰⵡⵓⵔⵉ",
                 "second_best_selling_product": "ⵜⵓⴳⴳⴰⵔⴰ ⵏ ⵉⵎⴰⵍⵢⴰⵏ ⵜⵓⴳⴳⴰⵔⴰ",
                 "third_best_selling_product": "ⵜⵓⴳⴳⴰⵔⴰ ⵏ ⵉⵎⴰⵍⵢⴰⵏ ⵜⵓⴳⴳⴰⵔⴰ",
+                "top_products": "ⵜⵓⴳⴳⴰⵔⴰⵏ ⵏ ⵜⵓⴳⴳⴰⵔⴰ",
+                "profitability_analysis": "ⵜⴰⵏⵎⵉⵔⵜ ⵏ ⵜⴰⴳⴻⵔⵎⵜ",
+                "select_products_to_view": "ⴰⵙⵏⵓⵔⵓ ⵏ ⵉⵎⴰⵍⵢⴰⵏ ⵏ ⵜⵓⴳⴳⴰⵔⴰ ⵏ ⵜⵓⴳⴳⴰⵔⴰ",
+                "no_product_selected_warning": "ⵓⵔⴰ ⵏ ⵉⵎⴰⵍⵢⴰⵏ ⵏ ⵜⵓⴳⴳⴰⵔⴰ. ⵉⵍⵍⴰ ⵜⵓⴳⴳⴰⵔⴰ ⵏ ⵜⵓⴳⴳⴰⵔⴰ ⵏ ⵜⵓⴳⴳⴰⵔⴰ ⵏ ⵜⵓⴳⴳⴰⵔⴰ.",
             },
             "Tamazight": {
                 "title": "Takwil2t n Tuggara n Ima9yan",
@@ -168,6 +185,10 @@ class Translator:
                 "best_selling_product": "Imalyan n Tuggara n Tawuri",
                 "second_best_selling_product": "Imalyan n Tuggara n Tawuri",
                 "third_best_selling_product": "Imalyan n Tuggara n Tawuri",
+                "top_products": "Imalyan n Tuggara n Tawuri",
+                "profitability_analysis": "Tanmirt n Tagermt",
+                "select_products_to_view": "Asnuru Imalyan n Tuggara",
+                "no_product_selected_warning": "Ura Imalyan n Tuggara. Illa Asnuru Imalyan n Tuggara.",
             },
             "تمازيغت": {
                 "title": "تاكويلت ن توݣݣارا ن إماليان",
@@ -201,6 +222,10 @@ class Translator:
                 "best_selling_product": "إماليان ن توݣݣارا ن تاوري",
                 "second_best_selling_product": "إماليان ن توݣݣارا ن تاوري",
                 "third_best_selling_product": "إماليان ن توݣݣارا ن تاوري",
+                "top_products": "إماليان ن توݣݣارا ن تاوري",
+                "profitability_analysis": "تانميرت ن تاݣرمت",
+                "select_products_to_view": "أسنورو إماليان ن توݣݣارا",
+                "no_product_selected_warning": "ورا إماليان ن توݣݣارا. إيلا أسنورو إماليان ن توݣݣارا.",
             }
         }
 
