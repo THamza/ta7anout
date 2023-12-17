@@ -22,11 +22,6 @@ def format_all_currencies(value):
     value_in_centime = value * 100  # 1 Dirham = 100 Centimes
 
     formatted_dirham = locale.format_string("%.2f Dhs", value, grouping=True)
-    # formatted_ryal = locale.format_string("%.2f Ryals", value_in_ryal, grouping=True)
-    # formatted_centime = locale.format_string("%.2f Centimes", value_in_centime, grouping=True)
-
-    # Separate the currencies by line breaks for better readability
-    # return f"{formatted_dirham}<br>{formatted_ryal}<br>{formatted_centime}"
     
     return f"{formatted_dirham}<br>"
 
@@ -50,11 +45,86 @@ def show(data, translations):
     generate_sales_over_time_chart(data, translations)
 
 
+# Assuming you have a function to convert the raw metrics into formatted strings
+def format_metric(value, metric_type):
+    if metric_type == "currency":
+        return f"{value:.2f} Dhs"
+    elif metric_type == "quantity":
+        # remove trailing .0
+        return f"{value:.0f}"
+    else:
+        return f"{value}"
+
+def create_multi_metric_card(rank, sku, metrics, translations):
+    # Define symbols for each rank
+    rank_symbols = {
+        1: "🥇",
+        2: "🥈",
+        3: "🥉"
+    }
+    rank_symbol = rank_symbols.get(rank, "")
+
+    with st.container():
+        # Use a card-like layout with shadows for a subtle 3D effect
+        st.markdown(f"""
+            <style>
+            .metric-container {{
+                border-radius: 10px;
+                background-color: #f8f9fa;
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                transition: 0.3s;
+                padding: 15px;
+                margin-bottom: 10px;
+            }}
+            .metric-container:hover {{
+                box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            }}
+            .metric-title {{
+                font-size: 1.25rem;
+                font-weight: 500;
+                margin: 0;
+                padding: 0;
+                color: #333;
+            }}
+            .metric-value {{
+                font-size: 2rem;
+                font-weight: bold;
+                margin: 0;
+                padding: 0;
+                color: #1a73e8;  /* Change color to suit your branding */
+            }}
+            .metric-label {{
+                font-size: 1rem;
+                color: #6c757d;
+            }}
+            </style>
+            <div class="metric-container">
+                <p class="metric-title"><span class="rank-symbol">{rank_symbol}</span>{sku}</p>
+                <div class="row">
+                    <div class="col">
+                        <p class="metric-value">{metrics['Quantity']}</p>
+                        <p class="metric-label">{translations["total_items_sold"]}</p>
+                    </div>
+                    <div class="col">
+                        <p class="metric-value">{format_metric(metrics['Total'], 'currency')}</p>
+                        <p class="metric-label">{translations["total_sales"]}</p>
+                    </div>
+                    <div class="col">
+                        <p class="metric-value">{format_metric(metrics['Profit'], 'currency')}</p>
+                        <p class="metric-label">{translations["total_profit"]}</p>
+                    </div>
+                </div>
+            </div>
+        """, unsafe_allow_html=True)
+ 
+
+ 
+
 
 def generate_kpi_cards(data, translations):
     """
     Generate KPI cards for displaying key metrics.
-    """
+    """ 
     # Calculate KPI values
     average_price = data['Price'].mean()
     average_margin = data['Margin'].mean()
@@ -62,28 +132,28 @@ def generate_kpi_cards(data, translations):
     total_profit = data['Profit'].sum()
     total_items_sold = data['Quantity'].sum()  
 
-    # Calculate top 3 selling products
-    top_3_selling_products = data.groupby('SKU')['Quantity'].sum().sort_values(ascending=False).head(3).index.tolist()
-    best_selling_product = top_3_selling_products[0]
-    second_best_selling_product = top_3_selling_products[1]
-    third_best_selling_product = top_3_selling_products[2]
+    # Calculate top 3 selling products and their respective total profit, items sold, and total sales
+    top_products_data = data.groupby('SKU').agg({
+        'Quantity': 'sum',
+        'Total': 'sum',
+        'Profit': 'sum',
+    }).sort_values(by='Quantity', ascending=False).head(3)
 
     # Create columns for each card
     col1, col2, col3 = st.columns(3)
 
     with col1:
         create_statistic_card(translations["total_profit"], f"{total_profit:.2f} Dhs", style="warning")
-        create_statistic_card(translations["best_selling_product"], best_selling_product, style="secondary")
-        #create_statistic_card(translations["average_price"], f"{average_price:.2f} Dhs", style="primary")
 
     with col2:
         create_statistic_card(translations["total_sales"], f"{total_sales:.2f} Dhs", style="info")
-        create_statistic_card(translations["second_best_selling_product"], second_best_selling_product, style="secondary")
-        #create_statistic_card(translations["average_margin"], f"{average_margin:.2f}%", style="success")
 
     with col3:
         create_statistic_card(translations["total_items_sold"], f"{total_items_sold}", style="danger")
-        create_statistic_card(translations["third_best_selling_product"], third_best_selling_product, style="secondary")
+    
+    for i, (sku, metrics) in enumerate(top_products_data.iterrows(), start=1):
+        with (col1 if i == 1 else col2 if i == 2 else col3):
+            create_multi_metric_card(i, sku, metrics, translations)
 
 
 def generate_detailed_analysis(data, translations):
