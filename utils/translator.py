@@ -32,7 +32,10 @@ class Translator:
                 "unit_price_distribution": "Unit Price Distribution",
                 "profit_margin_by_sku": "Profit Margin by SKU",
                 "process_error": "An error occurred while processing the uploaded file. Please check the file and try again.",
-
+                "top_3_selling_products": "Top 3 Selling Products",
+                "best_selling_product": "1# Product",
+                "second_best_selling_product": "2# Prodzuctz",
+                "third_best_selling_product": "3# Selling Product",
             },
             "Français": {
                 "title": "Tableau de Bord des Ventes de Produits",
@@ -62,6 +65,10 @@ class Translator:
                 "unit_price_distribution": "Distribution des Prix Unitaire",
                 "profit_margin_by_sku": "Marge de Profit par SKU",
                 "process_error": "Une erreur s'est produite lors du traitement du fichier téléchargé. Veuillez vérifier le fichier et réessayer.",
+                "top_3_selling_products": "Top 3 des Produits les Plus Vendus",
+                "best_selling_product": "1# Produit Vendu",
+                "second_best_selling_product": "2# Meilleur Produit Vendu",
+                "third_best_selling_product": "3# Meilleur Produit Vendu",
             },
             "العربية": {
                 "title": "لوحة مبيعات المنتجات",
@@ -91,6 +98,10 @@ class Translator:
                 "unit_price_distribution": "توزيع سعر الوحدة",
                 "profit_margin_by_sku": "هامش الربح حسب الرقم التسلسلي",
                 "process_error": "حدث خطأ أثناء معالجة الملف المحمل. يرجى التحقق من الملف والمحاولة مرة أخرى.",
+                "top_3_selling_products": "أفضل 3 منتجات مباعة",
+                "best_selling_product": "أفضل منتج مباع",
+                "second_best_selling_product": "ثاني أفضل منتج مباع",
+                "third_best_selling_product": "ثالث أفضل منتج مباع",
             },
             "ⵜⴰⵎⴰⵣⵉⵖⵜ": {
                 "title": "ⵜⴰⴽⵡⵉⵍⵜ ⵏ ⵜⵓⴳⴳⴰⵔⴰ ⵏ ⵉⵎⴰⵍⵢⴰⵏ",
@@ -120,6 +131,10 @@ class Translator:
                 "unit_price_distribution": "ⵜⵓⵙⵉⵏⵏⴰ ⵏ ⵜⴰⵙⴰⵖⵜ ⵏ ⵜⵓⵙⵉⵏⵏⴰⵏ",
                 "profit_margin_by_sku": "ⵜⴰⴳⴻⵔⵎⵜ ⵏ ⵜⴰⴳⴻⵔⵎⵜ ⵏ ⵜⵓⴳⴳⴰⵔⴰ",
                 "process_error": "ⴰⵙⵏⵓⵔⵓ ⵏ ⵉⵎⴰⵍⵢⴰⵏ ⵏ ⵜⵓⴳⴳⴰⵔⴰ ⵏ ⵉⵎⴰⵍⵢⴰⵏ ⴰⵙⵏⵓⵔⵓ. ⵉⵍⵍⴰ ⵜⴰⵎⵓⵍⵜ ⵏ ⵜⵓⴳⴳⴰⵔⴰ ⵏ ⵉⵎⴰⵍⵢⴰⵏ ⵏ ⵜⵓⴳⴳⴰⵔⴰ ⵏ ⵉⵎⴰⵍⵢⴰⵏ.",
+                "top_3_selling_products": "ⵜⵓⴳⴳⴰⵔⴰ ⵏ ⵜⵓⴳⴳⴰⵔⴰ ⵏ ⵜⵓⴳⴳⴰⵔⴰ ⵏ ⵜⵓⴳⴳⴰⵔⴰ",
+                "best_selling_product": "ⵜⵓⴳⴳⴰⵔⴰ ⵜⴰⵡⵓⵔⵉ",
+                "second_best_selling_product": "ⵜⵓⴳⴳⴰⵔⴰ ⵏ ⵉⵎⴰⵍⵢⴰⵏ ⵜⵓⴳⴳⴰⵔⴰ",
+                "third_best_selling_product": "ⵜⵓⴳⴳⴰⵔⴰ ⵏ ⵉⵎⴰⵍⵢⴰⵏ ⵜⵓⴳⴳⴰⵔⴰ",
             },
             "Tamazight": {
                 "title": "Takwil2t n Tuggara n Ima9yan",
@@ -149,6 +164,10 @@ class Translator:
                 "unit_price_distribution": "Tawzint n Tasag9t n Tagermt",
                 "profit_margin_by_sku": "Tamul2t n Tagermt n SKU",
                 "process_error": "Asnuru n Imalyan n Tuggara n Imalyan Asnuru. Illa Tamul2t n Tuggara n Imalyan n Tuggara n Imalyan.",
+                "top_3_selling_products": "Imalyan n Tuggara n Tawuri",
+                "best_selling_product": "Imalyan n Tuggara n Tawuri",
+                "second_best_selling_product": "Imalyan n Tuggara n Tawuri",
+                "third_best_selling_product": "Imalyan n Tuggara n Tawuri",
             },
             "تمازيغت": {
                 "title": "تاكويلت ن توݣݣارا ن إماليان",
@@ -178,6 +197,10 @@ class Translator:
                 "unit_price_distribution": "تاوزينت ن تاساغت ن تاݣرمت",
                 "profit_margin_by_sku": "تامولت ن تاݣرمت ن سكو",
                 "process_error": "أسنورو ن إماليان ن توݣݣارا ن إماليان أسنورو. إيلا تامولت ن توݣݣارا ن إماليان ن توݣݣارا ن إماليان.",
+                "top_3_selling_products": "إماليان ن توݣݣارا ن تاوري",
+                "best_selling_product": "إماليان ن توݣݣارا ن تاوري",
+                "second_best_selling_product": "إماليان ن توݣݣارا ن تاوري",
+                "third_best_selling_product": "إماليان ن توݣݣارا ن تاوري",
             }
         }
 

@@ -59,22 +59,31 @@ def generate_kpi_cards(data, translations):
     average_price = data['Price'].mean()
     average_margin = data['Margin'].mean()
     total_sales = data['Total'].sum()
-    total_profit = (data['Total'] * (data['Margin'] / 100)).sum()
-    total_items_sold = data['Quantity'].sum()
+    total_profit = data['Profit'].sum()
+    total_items_sold = data['Quantity'].sum()  
+
+    # Calculate top 3 selling products
+    top_3_selling_products = data.groupby('SKU')['Quantity'].sum().sort_values(ascending=False).head(3).index.tolist()
+    best_selling_product = top_3_selling_products[0]
+    second_best_selling_product = top_3_selling_products[1]
+    third_best_selling_product = top_3_selling_products[2]
 
     # Create columns for each card
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        create_statistic_card(translations["average_price"], f"{average_price:.2f} Dhs", style="primary")
         create_statistic_card(translations["total_profit"], f"{total_profit:.2f} Dhs", style="warning")
+        create_statistic_card(translations["best_selling_product"], best_selling_product, style="secondary")
+        create_statistic_card(translations["average_price"], f"{average_price:.2f} Dhs", style="primary")
 
     with col2:
+        create_statistic_card(translations["total_sales"], f"{total_sales:.2f} Dhs", style="info")
+        create_statistic_card(translations["second_best_selling_product"], second_best_selling_product, style="secondary")
         create_statistic_card(translations["average_margin"], f"{average_margin:.2f}%", style="success")
-        create_statistic_card(translations["total_items_sold"], f"{total_items_sold}", style="danger")
 
     with col3:
-        create_statistic_card(translations["total_sales"], f"{total_sales:.2f} Dhs", style="info")
+        create_statistic_card(translations["total_items_sold"], f"{total_items_sold}", style="danger")
+        create_statistic_card(translations["third_best_selling_product"], third_best_selling_product, style="secondary")
 
 
 def generate_detailed_analysis(data, translations):
