@@ -74,12 +74,12 @@ def generate_kpi_cards(data, translations):
     with col1:
         create_statistic_card(translations["total_profit"], f"{total_profit:.2f} Dhs", style="warning")
         create_statistic_card(translations["best_selling_product"], best_selling_product, style="secondary")
-        create_statistic_card(translations["average_price"], f"{average_price:.2f} Dhs", style="primary")
+        #create_statistic_card(translations["average_price"], f"{average_price:.2f} Dhs", style="primary")
 
     with col2:
         create_statistic_card(translations["total_sales"], f"{total_sales:.2f} Dhs", style="info")
         create_statistic_card(translations["second_best_selling_product"], second_best_selling_product, style="secondary")
-        create_statistic_card(translations["average_margin"], f"{average_margin:.2f}%", style="success")
+        #create_statistic_card(translations["average_margin"], f"{average_margin:.2f}%", style="success")
 
     with col3:
         create_statistic_card(translations["total_items_sold"], f"{total_items_sold}", style="danger")
