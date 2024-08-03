@@ -200,20 +200,32 @@ def generate_kpi_cards(data, translations):
     average_margin = data['Margin'].mean()
     total_sales = data['Total'].sum()
     total_profit = data['Profit'].sum()
-    total_items_sold = data['Quantity'].sum()  
+    total_items_sold = pd.to_numeric(data['Quantity'], errors='coerce').fillna(0).astype(int).sum()
 
    
     # Create columns for each card
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        create_statistic_card(translations["total_profit"], f"{total_profit:.2f} Dhs", style="warning")
+        create_statistic_card(
+            translations["total_profit"], 
+            f"{total_profit:,.2f}".replace(',', ' ') + " Dhs", 
+            style="warning"
+        )
 
     with col2:
-        create_statistic_card(translations["total_sales"], f"{total_sales:.2f} Dhs", style="info")
+        create_statistic_card(
+            translations["total_sales"], 
+            f"{total_sales:,.2f}".replace(',', ' ') + " Dhs", 
+            style="info"
+        )
 
     with col3:
-        create_statistic_card(translations["total_items_sold"], f"{total_items_sold}", style="danger")
+        create_statistic_card(
+            translations["total_items_sold"], 
+            f"{total_items_sold:,}".replace(',', ' '), 
+            style="danger"
+        )
 
 
 
