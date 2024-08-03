@@ -99,13 +99,28 @@ def show_profitability_analysis(data, translations):
 
 # Assuming you have a function to convert the raw metrics into formatted strings
 def format_metric(value, metric_type):
-    if metric_type == "currency":
-        return f"{value:.2f} Dhs"
-    elif metric_type == "quantity":
-        # remove trailing .0
-        return f"{value:.0f}"
-    else:
-        return f"{value}"
+    try:
+        # Convert value to float
+        numeric_value = float(value)
+        
+        if metric_type == "currency":
+            formatted = f"{numeric_value:.2f}"
+        elif metric_type == "quantity":
+            formatted = f"{numeric_value:.0f}"
+        else:
+            formatted = f"{numeric_value}"
+        
+        # Add thousand separators
+        parts = formatted.split(".")
+        parts[0] = "{:,}".format(int(float(parts[0]))).replace(",", " ")
+        formatted = ".".join(parts)
+        
+        if metric_type == "currency":
+            return formatted + " Dhs"
+        return formatted
+    except ValueError:
+        # If conversion to float fails, return the original value as a string
+        return str(value)
 
 def create_multi_metric_card(rank, sku, metrics, translations):
     # Define symbols for each rank
@@ -154,7 +169,7 @@ def create_multi_metric_card(rank, sku, metrics, translations):
                 <p class="metric-title"><span class="rank-symbol">{rank_symbol}</span>{sku}</p>
                 <div class="row">
                     <div class="col">
-                        <p class="metric-value">{metrics['Quantity']}</p>
+                        <p class="metric-value">{format_metric(metrics['Quantity'], 'quantity')}</p>
                         <p class="metric-label">{translations["total_items_sold"]}</p>
                     </div>
                     <div class="col">
@@ -168,25 +183,38 @@ def create_multi_metric_card(rank, sku, metrics, translations):
                 </div>
             </div>
         """, unsafe_allow_html=True)
- 
 
  
 def generate_top_products_cards(data, translations):
     st.markdown("## " + translations["top_products"])
-     # Calculate top 3 selling products and their respective total profit, items sold, and total sales
+    
+    # Add a dropdown menu for sorting criteria
+    sort_criteria = st.selectbox(
+        translations["sort_by"],
+        [translations["total_items_sold"], translations["total_profit"], translations["total_sales"]],
+        key="top_products_sort"
+    )
+    
+    # Map the selected option to the corresponding column name
+    sort_column = {
+        translations["total_items_sold"]: "Quantity",
+        translations["total_profit"]: "Profit",
+        translations["total_sales"]: "Total"
+    }[sort_criteria]
+    
+    # Calculate top 3 products based on the selected criteria
     top_products_data = data.groupby('SKU').agg({
-        'Quantity': 'sum',
-        'Total': 'sum',
-        'Profit': 'sum',
-    }).sort_values(by='Quantity', ascending=False).head(3)
+        'Quantity': lambda x: pd.to_numeric(x, errors='coerce').sum(),
+        'Total': lambda x: pd.to_numeric(x, errors='coerce').sum(),
+        'Profit': lambda x: pd.to_numeric(x, errors='coerce').sum(),
+    }).sort_values(by=sort_column, ascending=False).head(3)
 
     col1, col2, col3 = st.columns(3)
+    columns = [col1, col2, col3]
+    
     for i, (sku, metrics) in enumerate(top_products_data.iterrows(), start=1):
-        with (col1 if i == 1 else col2 if i == 2 else col3):
+        with columns[i-1]:
             create_multi_metric_card(i, sku, metrics, translations)
-
-
-
 
 def generate_kpi_cards(data, translations):
     """
